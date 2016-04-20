@@ -16,22 +16,17 @@ public class TicketServer {
 	public static void start(int portNumber) throws IOException {
 		PORT = portNumber;
 		Runnable serverThread = new ThreadedTicketServer();
-		//Runnable serverThread2 = new ThreadedTicketServer();
-		//Runnable serverThread3 = new ThreadedTicketServer();
 		Thread t = new Thread(serverThread);
-		//Thread t2 = new Thread(serverThread2);
-		//Thread t3 = new Thread(serverThread3);
 		t.start();
 	}
 }
 
-class ThreadedTicketServer implements Runnable {
-
+class ThreadedTicketServer implements Runnable{
 	String hostname = "127.0.0.1";
 	String threadname = "X";
 	String testcase;
 	TicketClient sc;
-
+	
 	public void run() {
 		// TODO 422C
 		ServerSocket serverSocket;
@@ -40,10 +35,13 @@ class ThreadedTicketServer implements Runnable {
 			Socket clientSocket = serverSocket.accept();
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			String clientRequest = in.readLine();
+			if (clientRequest.equals("Request for a ticket")){
+				System.out.println("Request recieved, adding to queue.");
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }
