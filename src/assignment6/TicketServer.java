@@ -55,6 +55,11 @@ class ThreadedTicketServer implements Runnable {
 			if (clientRequest.equals("Request for a ticket")){
 				System.out.println("Server " + serverName + "; " + passed.bestAvailableSeat());
 				out.println("Done");
+				try {
+					Thread.sleep(100);																			// How long the user will see the message
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+				}
 			}
 			in.close();
 			out.close();
