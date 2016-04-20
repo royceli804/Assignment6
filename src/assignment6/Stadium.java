@@ -12,16 +12,16 @@ public class Stadium {
 			}
 		}
 	}
-	public String bestAvailableSeat(){
+	public synchronized String bestAvailableSeat(){
+		try{
 		String bestSeat = seats.get(0);
 		seats.remove(0);
 		return "You have been assigned Seat: " + bestSeat;
-		
-	}
-	void markAvailableSeat(){
-		
-	}
-	void printTicketSeat(){
-		
+		}
+		catch (IndexOutOfBoundsException e){
+			System.out.println("Sorry Tickets Are Sold Out!");
+			System.exit(0);
+		}
+		return null;
 	}
 }

@@ -12,13 +12,16 @@ public class TestTicketOffice {
 	public void basicServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16789, newStadium);
+			TicketServer.start(16789, 16790, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
-		TicketClient client = new TicketClient();
-		for(int i = 0; i <= 100; i++){
-		client.requestTicket();
+		TicketClient [] c = new TicketClient[100];												// Each TickentClient Object is a new request.
+		for (int i = 0; i < 100; i++){
+		c[i] = new TicketClient();
+		}
+		for (int i = 0; i <100; i++){
+			c[i].requestTicket();
 		}
 	}
 
@@ -26,7 +29,7 @@ public class TestTicketOffice {
 	public void testServerCachedHardInstance() {
 		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16790, newStadium);
+			TicketServer.start(16790, 16791, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
@@ -41,7 +44,7 @@ public class TestTicketOffice {
 	public void twoNonConcurrentServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16791, newStadium);
+			TicketServer.start(16791, 16792, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
@@ -55,8 +58,9 @@ public class TestTicketOffice {
 
 	//@Test
 	public void twoConcurrentServerTest() {
+		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16792, null);
+			TicketServer.start(16792, 16973, newStadium);
 		} catch (Exception e) {
 			fail();
 		}

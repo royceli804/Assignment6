@@ -9,6 +9,8 @@ class ThreadedTicketClient implements Runnable {
 	String hostname = "127.0.0.1";
 	String threadname = "X";
 	TicketClient sc;
+	boolean flag = false;
+	boolean flag1 = false;
 
 	public ThreadedTicketClient(TicketClient sc, String hostname, String threadname) {
 		this.sc = sc;
@@ -17,8 +19,9 @@ class ThreadedTicketClient implements Runnable {
 	}
 
 	public void run() {
-		System.out.flush();
-		try {
+		while (true){
+		System.out.flush();																					// Will try Server A, if it is busy
+		try {																								// Use Server B. Loop until one is open
 			Socket echoSocket = new Socket(hostname, TicketServer.PORT);
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			out.println("Request for a ticket");
@@ -26,10 +29,28 @@ class ThreadedTicketClient implements Runnable {
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			while(in.readLine() == null){
 			}
-			System.out.println("Congrats you have your seat");
+			System.out.println("Congrats you have your assigned seat");
+			System.out.println();
 			echoSocket.close();
+			flag = false;
+			break;
 		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		try {
+			Socket echoSocket = new Socket(hostname, TicketServer.PORT1);
+			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
+			out.println("Request for a ticket");
+			BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+			while(in.readLine() == null){
+			}
+			System.out.println("Congrats you have your assigned seat");
+			System.out.println();
+			echoSocket.close();
+			flag = false;
+			break;
+			}catch (Exception e) {
+			}
 		}
 	}
 }
@@ -54,15 +75,8 @@ public class TicketClient {
 		this("localhost", "unnamed client");
 	}
 
-	synchronized void requestTicket() {
+	void requestTicket() {
 		tc.run();
-		System.out.println(hostName + "," + threadName + " got one ticket");
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	void sleep() {
