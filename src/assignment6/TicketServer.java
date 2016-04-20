@@ -16,7 +16,11 @@ public class TicketServer {
 	public static void start(int portNumber) throws IOException {
 		PORT = portNumber;
 		Runnable serverThread = new ThreadedTicketServer();
+		//Runnable serverThread2 = new ThreadedTicketServer();
+		//Runnable serverThread3 = new ThreadedTicketServer();
 		Thread t = new Thread(serverThread);
+		//Thread t2 = new Thread(serverThread2);
+		//Thread t3 = new Thread(serverThread3);
 		t.start();
 	}
 }
