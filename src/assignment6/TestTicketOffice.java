@@ -7,7 +7,7 @@ import org.junit.Test;
 public class TestTicketOffice {
 
 	public static int score = 0;
-
+	
 	@Test
 	public void basicServerTest() {
 		Stadium newStadium = new Stadium();
@@ -17,13 +17,16 @@ public class TestTicketOffice {
 			fail();
 		}
 		TicketClient client = new TicketClient();
+		for(int i = 0; i <= 100; i++){
 		client.requestTicket();
+		}
 	}
 
 	//@Test
 	public void testServerCachedHardInstance() {
+		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16790, null);
+			TicketServer.start(16790, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
@@ -36,8 +39,9 @@ public class TestTicketOffice {
 
 	//@Test
 	public void twoNonConcurrentServerTest() {
+		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16791, null);
+			TicketServer.start(16791, newStadium);
 		} catch (Exception e) {
 			fail();
 		}

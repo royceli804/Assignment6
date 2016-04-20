@@ -54,9 +54,15 @@ public class TicketClient {
 		this("localhost", "unnamed client");
 	}
 
-	void requestTicket() {
+	synchronized void requestTicket() {
 		tc.run();
 		System.out.println(hostName + "," + threadName + " got one ticket");
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	void sleep() {

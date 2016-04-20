@@ -33,8 +33,9 @@ class ThreadedTicketServer implements Runnable {
 	}
 	
 	@Override
-	public void run() {
+	public void  run() {
 		// TODO 422C
+		while(true){
 		ServerSocket serverSocket;
 		try {
 			serverSocket = new ServerSocket(TicketServer.PORT);
@@ -47,10 +48,14 @@ class ThreadedTicketServer implements Runnable {
 				System.out.println(passed.bestAvailableSeat());
 				out.println("Done");
 			}
+			in.close();
+			out.close();
+			clientSocket.close();
+			serverSocket.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		}	
 	}
 }
