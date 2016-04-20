@@ -6,27 +6,33 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+	
 public class TicketServer {
 	static int PORT = 2222;
 	// EE422C: no matter how many concurrent requests you get,
 	// do not have more than three servers running concurrently
 	final static int MAXPARALLELTHREADS = 3;
-
-	public static void start(int portNumber) throws IOException {
+	
+	public static void start(int portNumber, Stadium a) throws IOException {
 		PORT = portNumber;
-		Runnable serverThread = new ThreadedTicketServer();
+		Runnable serverThread = new ThreadedTicketServer(a);
 		Thread t = new Thread(serverThread);
 		t.start();
 	}
 }
 
-class ThreadedTicketServer implements Runnable{
+class ThreadedTicketServer implements Runnable {
 	String hostname = "127.0.0.1";
 	String threadname = "X";
 	String testcase;
 	TicketClient sc;
+	Stadium passed;
+
+	public ThreadedTicketServer(Stadium a) {
+		passed = a;
+	}
 	
+	@Override
 	public void run() {
 		// TODO 422C
 		ServerSocket serverSocket;
@@ -38,10 +44,13 @@ class ThreadedTicketServer implements Runnable{
 			String clientRequest = in.readLine();
 			if (clientRequest.equals("Request for a ticket")){
 				System.out.println("Request recieved, adding to queue.");
+				System.out.println(passed.bestAvailableSeat());
+				out.println("Done");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 }

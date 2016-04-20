@@ -10,8 +10,9 @@ public class TestTicketOffice {
 
 	@Test
 	public void basicServerTest() {
+		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16789);
+			TicketServer.start(16789, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
@@ -22,7 +23,7 @@ public class TestTicketOffice {
 	//@Test
 	public void testServerCachedHardInstance() {
 		try {
-			TicketServer.start(16790);
+			TicketServer.start(16790, null);
 		} catch (Exception e) {
 			fail();
 		}
@@ -36,7 +37,7 @@ public class TestTicketOffice {
 	//@Test
 	public void twoNonConcurrentServerTest() {
 		try {
-			TicketServer.start(16791);
+			TicketServer.start(16791, null);
 		} catch (Exception e) {
 			fail();
 		}
@@ -51,7 +52,7 @@ public class TestTicketOffice {
 	//@Test
 	public void twoConcurrentServerTest() {
 		try {
-			TicketServer.start(16792);
+			TicketServer.start(16792, null);
 		} catch (Exception e) {
 			fail();
 		}
