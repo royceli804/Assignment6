@@ -1,3 +1,7 @@
+/*Assignment6 EE 422C
+ * Aftab Hadimohd ah35368
+ * Royce Li rl26589
+*/
 package assignment6;
 
 import java.io.BufferedReader;
@@ -51,7 +55,6 @@ class ThreadedTicketServer implements Runnable {
 	
 	@Override
 	public void  run() {
-		// TODO 422C
 		while(true){																							// Both servers run the same way
 		ServerSocket serverSocket;
 		try {
@@ -66,7 +69,7 @@ class ThreadedTicketServer implements Runnable {
 				try {
 					Thread.sleep(100);																			// How long the user will see the message
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+	
 				}
 			}
 			in.close();

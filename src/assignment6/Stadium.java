@@ -1,3 +1,7 @@
+/*Assignment6 EE 422C
+ * Aftab Hadimohd ah35368
+ * Royce Li rl26589
+*/
 package assignment6;
 
 import java.util.ArrayList;

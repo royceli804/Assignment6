@@ -1,3 +1,7 @@
+/*Assignment6 EE 422C
+ * Aftab Hadimohd ah35368
+ * Royce Li rl26589
+*/
 package assignment6;
 
 import java.io.BufferedReader;
@@ -9,8 +13,6 @@ class ThreadedTicketClient implements Runnable {
 	String hostname = "127.0.0.1";
 	String threadname = "X";
 	TicketClient sc;
-	boolean flag = false;
-	boolean flag1 = false;
 
 	public ThreadedTicketClient(TicketClient sc, String hostname, String threadname) {
 		this.sc = sc;
@@ -26,13 +28,11 @@ class ThreadedTicketClient implements Runnable {
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			out.println("Request for a ticket");
 			BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			while(in.readLine() == null){
 			}
-			System.out.println("Congrats you have your assigned seat");
+			System.out.println("Congrats you have your assigned seat, Client " + threadname);
 			System.out.println();
 			echoSocket.close();
-			flag = false;
 			break;
 		} catch (Exception e) {
 		}
@@ -41,13 +41,11 @@ class ThreadedTicketClient implements Runnable {
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			out.println("Request for a ticket");
 			BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			while(in.readLine() == null){
 			}
-			System.out.println("Congrats you have your assigned seat");
+			System.out.println("Congrats you have your assigned seat, Client " + threadname);
 			System.out.println();
 			echoSocket.close();
-			flag = false;
 			break;
 			}catch (Exception e) {
 			}

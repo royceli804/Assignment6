@@ -1,6 +1,12 @@
+/*Assignment6 EE 422C
+ * Aftab Hadimohd ah35368
+ * Royce Li rl26589
+*/
 package assignment6;
 
 import static org.junit.Assert.fail;
+
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -91,8 +97,8 @@ public class TestTicketOffice {
 
 	}
 	
-	@Test
-	public void ourServerTest1() {
+	//@Test
+	public void our1ServerTest1() {
 		Stadium newStadium = new Stadium();
 		try {
 			TicketServer.start(16789, newStadium);
@@ -108,8 +114,8 @@ public class TestTicketOffice {
 		}
 	}
 	
-	@Test
-	public void ourServerTest2() {
+	//@Test
+	public void ourConcurrent2ServerTest2() {
 		Stadium newStadium = new Stadium();
 		try {
 			TicketServer.start(16789, 16790, newStadium);
@@ -124,5 +130,51 @@ public class TestTicketOffice {
 			c[i].requestTicket();
 		}
 	}
+	
+	//@Test
+	public void preservationofQueueServerTest() {
+		Stadium newStadium = new Stadium();
+		try {
+			TicketServer.start(16792, 16973, newStadium);
+		} catch (Exception e) {
+			fail();
+		}
+		TicketClient [] c = new TicketClient[50];
+		TicketClient [] d = new TicketClient[50];								// Each TickentClient Object is a new request.
+		TicketClient [] e = new TicketClient[50];
+		for (int i = 0; i < 50; i++){
+		c[i] = new TicketClient("Aftab");
+		d[i] = new TicketClient("Royce");
+		e[i] = new TicketClient("DeWayne");
+		}
+		for (int i = 0; i < 50; i++){
+			c[i].requestTicket();
+			d[i].requestTicket();
+			e[i].requestTicket();
+			}
+	}
+	
+	@Test
+		public void randomClientConstructServerTest() {
+			Stadium newStadium = new Stadium();
+			try {
+				TicketServer.start(16789, 16790, newStadium);
+			} catch (Exception e) {
+				fail();
+			}
+			while(true){
+				Random rand = new Random();
+				int  n = rand.nextInt(50) + 1;
+				TicketClient [] c = new TicketClient[n];												// Each TickentClient Object is a new request.
+				for (int i = 0; i < n; i++){
+				c[i] = new TicketClient("Random");
+				}
+				for (int i = 0; i <n; i++){
+					c[i].requestTicket();
+				}
+			}		
+		}
+	
+
 
 }
