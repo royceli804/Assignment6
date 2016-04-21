@@ -26,8 +26,8 @@ public class TicketServer {
 	}
 	
 	public static void start(int portNumber, int portNumber1, Stadium a) throws IOException {
-		PORT = portNumber;																			// Two servers on two ports running simultaneously
-		PORT1 = portNumber1;
+		PORT = portNumber;						 													// Two servers on two ports running simultaneously
+		PORT1 = portNumber1; //second box office
 		Runnable serverThread = new ThreadedTicketServer(portNumber,"A", a);
 		Thread t = new Thread(serverThread);
 		t.start();

@@ -37,7 +37,7 @@ class ThreadedTicketClient implements Runnable {
 		} catch (Exception e) {
 		}
 		try {
-			Socket echoSocket = new Socket(hostname, TicketServer.PORT1);
+			Socket echoSocket = new Socket(hostname, TicketServer.PORT1); //try second box office if first one is busy
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			out.println("Request for a ticket");
 			BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));

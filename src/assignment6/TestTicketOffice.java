@@ -14,7 +14,12 @@ public class TestTicketOffice {
 
 	public static int score = 0;
 	
-	//@Test
+	/******************************************************************************
+	* Method Name: basicServerTest                                   			*
+	* Purpose: Tests 1 customer with 1 server                  	  				*
+	******************************************************************************/
+	
+	@Test
 	public void basicServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -25,9 +30,14 @@ public class TestTicketOffice {
 		TicketClient client = new TicketClient();
 		client.requestTicket();
 
-	}
+	} 
 	
-	//@Test
+	/******************************************************************************
+	* Method Name: testServerCachedHardInstance                                   *
+	* Purpose: Tests 2 customers with 2 box offices/servers                    	  *
+	******************************************************************************/
+	
+	@Test
 	public void testServerCachedHardInstance() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -42,7 +52,11 @@ public class TestTicketOffice {
 		
 	}
 
-	//@Test
+	/******************************************************************************
+	* Method Name: twoNonConcurrentServerTest                                     *
+	* Purpose: Tests 3 customers with 1 box office/server                    	  *
+	******************************************************************************/
+	@Test
 	public void twoNonConcurrentServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -58,7 +72,11 @@ public class TestTicketOffice {
 		c3.requestTicket();
 	}
 
-	//@Test
+	/******************************************************************************
+	* Method Name: twoConcurrentServerTest                                    	  *
+	* Purpose: Tests 3 customers with 2 box offices/servers                    	  *
+	******************************************************************************/
+	@Test
 	public void twoConcurrentServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -97,7 +115,12 @@ public class TestTicketOffice {
 
 	}
 	
-	//@Test
+	/******************************************************************************
+	* Method Name: our1ServerTest1                                     			  *
+	* Purpose: Tests 100 customers with 1 box office/server                    	  *
+	******************************************************************************/
+	
+	@Test
 	public void our1ServerTest1() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -114,7 +137,11 @@ public class TestTicketOffice {
 		}
 	}
 	
-	//@Test
+	/******************************************************************************
+	* Method Name: ourConcurrent2ServerTest2                                      *
+	* Purpose: Tests 100 customers with 2 box offices/servers                     *
+	******************************************************************************/
+	@Test
 	public void ourConcurrent2ServerTest2() {
 		Stadium newStadium = new Stadium();
 		try {
@@ -153,6 +180,11 @@ public class TestTicketOffice {
 			e[i].requestTicket();
 			}
 	}
+	
+	/******************************************************************************
+	* Method Name: randomClientConstructServerTest                                *
+	* Purpose: Tests random number of customers with 2 box offices/servers        *
+	******************************************************************************/
 	
 	@Test
 		public void randomClientConstructServerTest() {
