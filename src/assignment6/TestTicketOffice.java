@@ -8,23 +8,19 @@ public class TestTicketOffice {
 
 	public static int score = 0;
 	
-	@Test
+	//@Test
 	public void basicServerTest() {
 		Stadium newStadium = new Stadium();
 		try {
-			TicketServer.start(16789, 16790, newStadium);
+			TicketServer.start(16789, newStadium);
 		} catch (Exception e) {
 			fail();
 		}
-		TicketClient [] c = new TicketClient[100];												// Each TickentClient Object is a new request.
-		for (int i = 0; i < 100; i++){
-		c[i] = new TicketClient();
-		}
-		for (int i = 0; i <100; i++){
-			c[i].requestTicket();
-		}
-	}
+		TicketClient client = new TicketClient();
+		client.requestTicket();
 
+	}
+	
 	//@Test
 	public void testServerCachedHardInstance() {
 		Stadium newStadium = new Stadium();
@@ -94,4 +90,39 @@ public class TestTicketOffice {
 		}
 
 	}
+	
+	@Test
+	public void ourServerTest1() {
+		Stadium newStadium = new Stadium();
+		try {
+			TicketServer.start(16789, newStadium);
+		} catch (Exception e) {
+			fail();
+		}
+		TicketClient [] c = new TicketClient[100];												// Each TickentClient Object is a new request.
+		for (int i = 0; i < 100; i++){
+		c[i] = new TicketClient();
+		}
+		for (int i = 0; i <100; i++){
+			c[i].requestTicket();
+		}
+	}
+	
+	@Test
+	public void ourServerTest2() {
+		Stadium newStadium = new Stadium();
+		try {
+			TicketServer.start(16789, 16790, newStadium);
+		} catch (Exception e) {
+			fail();
+		}
+		TicketClient [] c = new TicketClient[100];												// Each TickentClient Object is a new request.
+		for (int i = 0; i < 100; i++){
+		c[i] = new TicketClient();
+		}
+		for (int i = 0; i <100; i++){
+			c[i].requestTicket();
+		}
+	}
+
 }

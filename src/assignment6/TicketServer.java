@@ -14,6 +14,13 @@ public class TicketServer {
 	// do not have more than three servers running concurrently
 	final static int MAXPARALLELTHREADS = 3;
 	
+	public static void start(int portNumber, Stadium a) throws IOException {
+		PORT = portNumber;																			
+		Runnable serverThread = new ThreadedTicketServer(portNumber,"A", a);
+		Thread t = new Thread(serverThread);
+		t.start();
+	}
+	
 	public static void start(int portNumber, int portNumber1, Stadium a) throws IOException {
 		PORT = portNumber;																			// Two servers on two ports running simultaneously
 		PORT1 = portNumber1;
@@ -24,6 +31,7 @@ public class TicketServer {
 		Thread t1 = new Thread(serverThread1);
 		t1.start();
 	}
+	
 }
 
 class ThreadedTicketServer implements Runnable {

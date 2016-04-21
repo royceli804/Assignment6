@@ -5,10 +5,16 @@ import java.util.ArrayList;
 public class Stadium {
 	static ArrayList<String> seats = new ArrayList<String>();
 	Stadium(){
+		int j = 115;
+		 int k = 114;
 		for(char i = 'A'; i <= 'Z'; i++){
-			for(int j = 101; j <= 128; j++){
-				String seatString = "" + i + j;
+			while(j<=128 && k>=101){
+				String seatString = "" + i + k;
 				seats.add(seatString);
+				k--;
+				String seatString2 = "" + i + j;
+				seats.add(seatString2);
+				j++;
 			}
 		}
 	}
